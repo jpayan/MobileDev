@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Actividad1</string>
+    <string name="action_settings">Settings</string>
+    <string name="button_Click">CLICK HERE!</string>
+    <string name="button_GoBack">GO BACK!</string>
+    <string name="text_hint">Ignore Me.</string>
+</resources>
