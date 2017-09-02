@@ -16,27 +16,18 @@ public class MovieListActivity extends AppCompatActivity {
     ListView listView;
     TextView text_view_messageReceived;
 
-    ArrayList<Movie> movies = new ArrayList<Movie>() {{
-        add(new Movie("Reservoir Dogs", 99, "Quentin Tarantino", "Crime", 1992));
-        add(new Movie("The Departed", 151, "Martin Scorsese", "Crime", 2006));
-        add(new Movie("El Payan", 180, "Fidel Castro", "Documentary", 2017));
-        add(new Movie("There Will Be Blood", 158, "Paul Thomas Anderson", "Drama", 2007));
-        add(new Movie("Snatch", 104, "Guy Ritchie", "Crime", 2000));
-    }};
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_list);
 
         Intent intent = getIntent();
-        String messageReceived = intent.getStringExtra(MainActivity.EXTRA_KEY);
 
         listView = (ListView) findViewById(R.id.list_view_movieList);
         movieAdapter = new MovieAdapter(this);
         listView.setAdapter(movieAdapter);
+        ArrayList<Movie> movies = (ArrayList<Movie>) intent.getSerializableExtra(MainActivity.EXTRA_KEY);
         fillMovieDatabase(movies);
-
     }
 
     private void fillMovieDatabase(ArrayList<Movie> movieList) {

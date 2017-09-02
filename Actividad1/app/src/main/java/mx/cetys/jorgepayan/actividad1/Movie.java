@@ -1,10 +1,12 @@
 package mx.cetys.jorgepayan.actividad1;
 
+import java.io.Serializable;
+
 /**
  * Created by jorge.payan on 8/25/17.
  */
 
-public class Movie {
+public class Movie implements Serializable{
 
     private String name;
     private int duration;

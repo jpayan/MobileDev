@@ -15,11 +15,20 @@ import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 //import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     public final static String EXTRA_KEY="Messaje";
+
+    ArrayList<Movie> movies = new ArrayList<Movie>() {{
+        add(new Movie("Reservoir Dogs", 99, "Quentin Tarantino", "Crime", 1992));
+        add(new Movie("The Departed", 151, "Martin Scorsese", "Crime", 2006));
+        add(new Movie("El Payan", 180, "Fidel Castro", "Documentary", 2017));
+        add(new Movie("There Will Be Blood", 158, "Paul Thomas Anderson", "Drama", 2007));
+        add(new Movie("Snatch", 104, "Guy Ritchie", "Crime", 2000));
+    }};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), MovieListActivity.class);
-                intent.putExtra(EXTRA_KEY, "message");
+                intent.putExtra(EXTRA_KEY, movies);
                 startActivity(intent);
             }
         });
