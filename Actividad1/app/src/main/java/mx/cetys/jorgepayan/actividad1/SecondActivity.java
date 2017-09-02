@@ -7,14 +7,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class Main2Activity extends AppCompatActivity {
+public class SecondActivity extends AppCompatActivity {
     TextView text_view_messageReceived;
     Button button_goBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.second_activity);
 
         text_view_messageReceived = (TextView) findViewById(R.id.text_view_showFromTextName);
         button_goBack = (Button) findViewById(R.id.button_GoToMain);

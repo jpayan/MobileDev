@@ -10,7 +10,7 @@
     tools:context="mx.cetys.jorgepayan.actividad1.MainActivity">
 
     <EditText
-        android:id="@+id/text_Name"
+        android:id="@+id/text_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -19,19 +19,32 @@
         android:text="Name"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintRight_toLeftOf="@+id/button_Click"
+        app:layout_constraintRight_toLeftOf="@+id/button_click"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp" />
 
     <Button
-        android:id="@+id/button_Click"
+        android:id="@+id/button_click"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_Click"
-        app:layout_constraintBaseline_toBaselineOf="@+id/text_Name"
-        app:layout_constraintLeft_toRightOf="@+id/text_Name"
+        app:layout_constraintBaseline_toBaselineOf="@+id/text_name"
+        app:layout_constraintLeft_toRightOf="@+id/text_name"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp" />
+
+    <Button
+        android:id="@+id/button_movieListView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Movies"
+        app:layout_constraintTop_toBottomOf="@+id/button_click"
+        app:layout_constraintLeft_toRightOf="@+id/button_click"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        app:layout_constraintHorizontal_bias="1.0"
+        tools:layout_editor_absoluteY="71dp" />
 
 </android.support.constraint.ConstraintLayout>

@@ -11,10 +11,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
 //import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     public final static String EXTRA_KEY="Messaje";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,8 +28,9 @@ public class MainActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
-        Button button_click = (Button) findViewById(R.id.button_Click);
-        final EditText text_name = (EditText) findViewById(R.id.text_Name);
+        Button button_click = (Button) findViewById(R.id.button_click);
+        Button button_movieList = (Button) findViewById(R.id.button_movieListView);
+        final EditText text_name = (EditText) findViewById(R.id.text_name);
 
         setSupportActionBar(toolbar);
 
@@ -40,12 +47,18 @@ public class MainActivity extends AppCompatActivity {
         button_click.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Toast.makeText(getApplicationContext(),text_name.getText().toString(),Toast.LENGTH_LONG).show();
-//                Snackbar.make(view, text_name.getText().toString(), Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-                Intent intent = new Intent(getApplicationContext(), Main2Activity.class);
+                Intent intent = new Intent(getApplicationContext(), SecondActivity.class);
                 String message = text_name.getText().toString();
                 intent.putExtra(EXTRA_KEY,message);
+                startActivity(intent);
+            }
+        });
+
+        button_movieList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), MovieListActivity.class);
+                intent.putExtra(EXTRA_KEY, "message");
                 startActivity(intent);
             }
         });
