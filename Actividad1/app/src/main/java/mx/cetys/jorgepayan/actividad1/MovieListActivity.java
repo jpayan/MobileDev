@@ -1,7 +1,5 @@
 package mx.cetys.jorgepayan.actividad1;
 
-import android.app.Activity;
-import android.util.Log;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,8 +16,6 @@ public class MovieListActivity extends AppCompatActivity {
     private ArrayList<Movie> movies = new ArrayList<Movie>();
     private static final String TAG = MovieListActivity.class.getSimpleName();
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,17 +28,15 @@ public class MovieListActivity extends AppCompatActivity {
         listView.setAdapter(movieAdapter);
 
         movies = intent.getParcelableArrayListExtra(MainActivity.EXTRA_KEY);
-        fillMovieDatabase(movies);
+        fillMovieView(movies);
 
         listView.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Log.i(TAG, movies.toString());
                 Movie movieToRemove = movies.get(position);
                 movies.remove(position);
                 movieAdapter.remove(movieToRemove);
                 movieAdapter.notifyDataSetChanged();
-                Log.i(TAG, movies.toString());
             }
         });
     }
@@ -53,13 +47,13 @@ public class MovieListActivity extends AppCompatActivity {
     }
 
     public void goBack() {
-        Intent intent = new Intent();
-        intent.putExtra("resultado",1);
-        setResult(Activity.RESULT_OK,intent);
+        Intent resultIntent = new Intent();
+        resultIntent.putExtra(MainActivity.EXTRA_KEY, movies);
+        setResult(MainActivity.RETURN_CODE, resultIntent);
         finish();
     }
 
-    private void fillMovieDatabase(ArrayList<Movie> movieList) {
+    private void fillMovieView(ArrayList<Movie> movieList) {
         movieAdapter.clear();
 
         for(Movie movie : movieList) {

@@ -21,7 +21,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     public final static String EXTRA_KEY="Messaje";
-    public final static int RETURN_CODE=1;
+    public final static int RETURN_CODE=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
