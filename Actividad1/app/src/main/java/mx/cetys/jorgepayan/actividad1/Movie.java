@@ -1,12 +1,13 @@
 package mx.cetys.jorgepayan.actividad1;
 
-import java.io.Serializable;
+import android.os.Parcel;
+import android.os.Parcelable;
 
 /**
  * Created by jorge.payan on 8/25/17.
  */
 
-public class Movie implements Serializable{
+public class Movie implements Parcelable{
 
     private String name;
     private int duration;
@@ -20,6 +21,14 @@ public class Movie implements Serializable{
         this.director = director;
         this.genre = genre;
         this.yearOfRelease = yearOfRelease;
+    }
+
+    public Movie(Parcel in) {
+        name = in.readString();
+        duration = in.readInt();
+        director = in.readString();
+        genre = in.readString();
+        yearOfRelease = in.readInt();
     }
 
     public String getName() {
@@ -61,5 +70,30 @@ public class Movie implements Serializable{
     public void setGenre(String genre) {
         this.genre = genre;
     }
+
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeInt(duration);
+        dest.writeString(director);
+        dest.writeString(genre);
+        dest.writeInt(yearOfRelease);
+    }
+
+    public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+        @Override
+        public Movie createFromParcel(Parcel in) {
+            return new Movie(in);
+        }
+
+        @Override
+        public Movie[] newArray(int size) {
+            return new Movie[size];
+        }
+    };
 
 }

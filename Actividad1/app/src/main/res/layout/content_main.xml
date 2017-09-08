@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:text="Movies"
         app:layout_constraintTop_toBottomOf="@+id/button_click"
-        app:layout_constraintLeft_toRightOf="@+id/button_click"
+        app:layout_constraintLeft_toRightOf="@+id/text_name"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
