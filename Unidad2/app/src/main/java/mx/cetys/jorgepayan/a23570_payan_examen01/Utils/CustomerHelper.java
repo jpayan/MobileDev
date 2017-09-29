@@ -22,7 +22,7 @@ public class CustomerHelper {
             DBUtils.CUSTOMER_POSITION,
             DBUtils.CUSTOMER_NAME,
             DBUtils.CUSTOMER_OPEREATIONS,
-            DBUtils.CUSTOMER_CURRENT_OPERATION,
+            DBUtils.CUSTOMER_CURRENT_OPERATION
     };
 
     public CustomerHelper(Context context){
@@ -37,10 +37,10 @@ public class CustomerHelper {
         dbHelper.close();
     }
 
-    public ArrayList<CustomerVisit> getAllCustoerVisits() {
+    public ArrayList<CustomerVisit> getAllCustomerVisits() {
         ArrayList<CustomerVisit> customerVisits = new ArrayList<>();
-        Cursor cursor = database.query(DBUtils.CUSTOMER_VISITS_TABLE,CUSTOMER_VISITS_TABLE_COLUMNS,
-                null,null,null,null,null);
+        Cursor cursor = database.query(DBUtils.CUSTOMER_VISITS_TABLE_NAME, CUSTOMER_VISITS_TABLE_COLUMNS,
+                null, null, null, null, null);
 
         cursor.moveToFirst();
         while(!cursor.isAfterLast()) {
@@ -60,9 +60,9 @@ public class CustomerHelper {
         values.put(DBUtils.CUSTOMER_OPEREATIONS, operations);
         values.put(DBUtils.CUSTOMER_CURRENT_OPERATION, currentOperation);
 
-        long customerVisitId = database.insert(DBUtils.CUSTOMER_VISITS_TABLE, null, values);
+        long customerVisitId = database.insert(DBUtils.CUSTOMER_VISITS_TABLE_NAME, null, values);
 
-        Cursor cursor = database.query(DBUtils.CUSTOMER_VISITS_TABLE, CUSTOMER_VISITS_TABLE_COLUMNS,
+        Cursor cursor = database.query(DBUtils.CUSTOMER_VISITS_TABLE_NAME, CUSTOMER_VISITS_TABLE_COLUMNS,
                 DBUtils.CUSTOMER_ID + " = " + customerVisitId, null, null, null, null);
 
         cursor.moveToFirst();
@@ -73,7 +73,18 @@ public class CustomerHelper {
     }
 
     public void deleteCustomerVisit(int customerVisitId) {
-        database.delete(DBUtils.CUSTOMER_VISITS_TABLE, DBUtils.CUSTOMER_ID + " = " + customerVisitId, null);
+        database.delete(DBUtils.CUSTOMER_VISITS_TABLE_NAME, DBUtils.CUSTOMER_ID + " = " + customerVisitId, null);
+    }
+
+    public int getCustomerVisitId(int position) {
+        Cursor cursor = database.query(DBUtils.CUSTOMER_VISITS_TABLE_NAME, new String[] {DBUtils.CUSTOMER_ID}, DBUtils.CUSTOMER_POSITION + " = " + position, null, null, null, null);
+        cursor.moveToFirst();
+        int id = cursor.getInt(cursor.getColumnIndex(DBUtils.CUSTOMER_ID));
+        return id;
+    }
+
+    public void clearTable(String tableName) {
+        database.execSQL("DELETE FROM " + tableName);
     }
 
     private CustomerVisit parseCustomerVisit(Cursor cursor) {
